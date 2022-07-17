@@ -1,0 +1,16 @@
+
+.appbar {
+    display: flex;
+    justify-content: space-between;
+}
+
+.Navlinks {
+    margin: 0 2vh;
+    text-decoration: none;
+    color: inherit;
+}
+
+.Navlinks:hover {
+    border-bottom: 2px solid red;
+    color: inherit;
+}
