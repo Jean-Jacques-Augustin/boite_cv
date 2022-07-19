@@ -1,31 +1,126 @@
-import React from "react";
-import { AppBar, Toolbar, Container } from "@mui/material";
+import React, { useState } from "react";
+import {
+     AppBar,
+     Toolbar,
+     Container,
+     Box,
+     IconButton,
+     Drawer,
+     ListItem,
+     ListItemIcon,
+     ListItemText,
+     List,
+     ListItemButton,
+} from "@mui/material";
 import { Typography } from "@mui/material";
 import { NavLink } from "react-router-dom";
+import { Hidden } from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
+import { useSelector, useDispatch } from "react-redux";
 
-const links = [
-     { name: "Accueil", path: "/" },
-     { name: "Formation", path: "/formation" },
-     { name: "Expériance", path: "/experience" },
-     { name: "Contact", path: "/contact" },
+// Icons
+import HomeIcon from "@mui/icons-material/Home";
+import SchoolIcon from "@mui/icons-material/School";
+import WorkIcon from "@mui/icons-material/Work";
+import ContactsIcon from "@mui/icons-material/Contacts";
+import SwitchTheme from "./swithchTheme";
+import { Link } from "react-router-dom";
+
+export const links = [
+     { name: "Accueil", path: "/", icon: <HomeIcon /> },
+     { name: "Formation", path: "/formation", icon: <SchoolIcon /> },
+     { name: "Expérience", path: "/experience", icon: <WorkIcon /> },
+     { name: "Contact", path: "/contact", icon: <ContactsIcon /> },
 ];
 
-export default function Navbar() {
+const drawerWidth = 300;
+
+const ListesLinks = () => {
      return (
-          <AppBar>
+          <Box sx={{ mt: 9 }}>
+               <List>
+                    {links.map((item, index) => (
+                         <ListItem key={index} disablePadding>
+                              <ListItemButton
+                                   className="listLinks"
+                                   component={Link}
+                                   to={item.path}
+                              >
+                                   <ListItemIcon>{item.icon}</ListItemIcon>
+                                   <ListItemText primary={item.name} />
+                              </ListItemButton>
+                         </ListItem>
+                    ))}
+               </List>
+
+               <List>
+                    <ListItem>
+                         <ListItemIcon>
+                              <SwitchTheme />
+                         </ListItemIcon>
+                         <ListItemText primary={"Theme de couleur"} />
+                    </ListItem>
+               </List>
+          </Box>
+     );
+};
+
+export default function Navbar() {
+     const [open, setOpen] = useState(false);
+
+     const handeClickOpenDrawer = () => {
+          setOpen(!open);
+     };
+
+     return (
+          <AppBar
+               elevation={1}
+               sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
+               color={"primary"}
+          >
                <Container>
                     <Toolbar className="appbar">
                          <Typography>LOGO</Typography>
                          <div>
-                              {links.map((item, key) => (
-                                   <NavLink
-                                        className={"Navlinks"}
-                                        to={item.path}
+                              <Hidden mdDown>
+                                   {links.map((item, key) => (
+                                        <NavLink
+                                             className={"Navlinks"}
+                                             to={item.path}
+                                             key={key}
+                                             data-replace={item.name}
+                                        >
+                                             {item.name}
+                                        </NavLink>
+                                   ))}
+                                   <SwitchTheme />
+                              </Hidden>
+                              <Hidden mdUp>
+                                   <IconButton
+                                        color="inherit"
+                                        onClick={handeClickOpenDrawer}
                                    >
-                                        {item.name}
-                                   </NavLink>
-                              ))}
+                                        {open ? <CloseIcon /> : <MenuIcon />}
+                                   </IconButton>
+                              </Hidden>
                          </div>
+                         <Drawer
+                              variant={"temporary"}
+                              sx={{
+                                   width: drawerWidth,
+                                   flexShrink: 0,
+                                   [`& .MuiDrawer-paper`]: {
+                                        width: drawerWidth,
+                                        boxSizing: "border-box",
+                                        border: 0,
+                                   },
+                              }}
+                              anchor={"left"}
+                              open={open}
+                         >
+                              <ListesLinks />
+                         </Drawer>
                     </Toolbar>
                </Container>
           </AppBar>

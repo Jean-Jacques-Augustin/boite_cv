@@ -1,16 +1,60 @@
-
 .appbar {
-    display: flex;
-    justify-content: space-between;
+     display: flex;
+     justify-content: space-between;
+     min-height: 9vh !important;
 }
 
+.App {
+     padding: auto;
+     min-height: 100vh;
+     display: flex;
+     border-radius: 0;
+     justify-content: center !important;
+     align-content: center !important;
+}
+
+/*Navlinks*/
 .Navlinks {
-    margin: 0 2vh;
-    text-decoration: none;
-    color: inherit;
+     padding: 1.5vh;
+     text-decoration: none;
+     color: #fff;
 }
 
 .Navlinks:hover {
-    border-bottom: 2px solid red;
-    color: inherit;
+     border: 2px solid #fff;
+     border-radius: 5px;
+}
+.Navlinks.active {
+     border: 2px solid #fff;
+     border-radius: 5px;
+}
+
+/*HOME*/
+
+.userInfo {
+     display: flex;
+}
+
+.userInfoTexts {
+     display: flex;
+     flex-direction: column;
+}
+
+/*
+FORMATION
+*/
+
+.item_desc {
+     display: flex;
+     margin-top: 2vh;
+     align-content: start;
+     justify-content: flex-start;
+}
+
+.item_desc_icon {
+     margin-right: 2vh;
+}
+
+.card {
+     padding: 2vh;
 }
