@@ -17,7 +17,7 @@ import { NavLink } from "react-router-dom";
 import { Hidden } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
-import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 
 // Icons
 import HomeIcon from "@mui/icons-material/Home";
@@ -25,7 +25,6 @@ import SchoolIcon from "@mui/icons-material/School";
 import WorkIcon from "@mui/icons-material/Work";
 import ContactsIcon from "@mui/icons-material/Contacts";
 import SwitchTheme from "./swithchTheme";
-import { Link } from "react-router-dom";
 
 export const links = [
      { name: "Accueil", path: "/", icon: <HomeIcon /> },
@@ -77,7 +76,7 @@ export default function Navbar() {
           <AppBar
                elevation={1}
                sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
-               color={"primary"}
+               color={"inherit"}
           >
                <Container>
                     <Toolbar className="appbar">
@@ -86,7 +85,6 @@ export default function Navbar() {
                               <Hidden mdDown>
                                    {links.map((item, key) => (
                                         <NavLink
-                                             className={"Navlinks"}
                                              to={item.path}
                                              key={key}
                                              data-replace={item.name}

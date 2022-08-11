@@ -99,31 +99,37 @@ export const FormationListForm = (props) => {
 
 export default function Formation(props) {
      return (
-          <Stepper orientation="vertical">
-               {FormationList.map((step, index) => (
-                    <Step active={true} key={index}>
-                         <StepLabel
-                              color="primary"
-                              icon={<SchoolIcon color="primary" />}
-                         >
-                              <Typography variant="h6">
-                                   - {step.date_formation}
-                              </Typography>
-                         </StepLabel>
-                         <StepContent>
-                              {
-                                   <FormationListForm
-                                        etablissement={
-                                             step.centre_de_formationl
-                                        }
-                                        location={step.adresse_centre_formation}
-                                        diplome={step.diplome_obtenu}
-                                        description={step.description}
-                                   />
-                              }
-                         </StepContent>
-                    </Step>
-               ))}
-          </Stepper>
+          <div>
+               <Typography variant="h4">Formation suivie :</Typography>
+               <br />
+               <Stepper orientation="vertical">
+                    {FormationList.map((step, index) => (
+                         <Step active={true} key={index}>
+                              <StepLabel
+                                   color="primary"
+                                   icon={<SchoolIcon color="primary" />}
+                              >
+                                   <Typography variant="h6">
+                                        - {step.date_formation}
+                                   </Typography>
+                              </StepLabel>
+                              <StepContent>
+                                   {
+                                        <FormationListForm
+                                             etablissement={
+                                                  step.centre_de_formationl
+                                             }
+                                             location={
+                                                  step.adresse_centre_formation
+                                             }
+                                             diplome={step.diplome_obtenu}
+                                             description={step.description}
+                                        />
+                                   }
+                              </StepContent>
+                         </Step>
+                    ))}
+               </Stepper>
+          </div>
      );
 }

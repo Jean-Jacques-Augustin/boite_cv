@@ -17,15 +17,11 @@
 .Navlinks {
      padding: 1.5vh;
      text-decoration: none;
-     color: #fff;
+     color: inherit;
 }
 
-.Navlinks:hover {
-     border: 2px solid #fff;
-     border-radius: 5px;
-}
 .Navlinks.active {
-     border: 2px solid #fff;
+     border: 2px solid inherit;
      border-radius: 5px;
 }
 
@@ -58,3 +54,10 @@ FORMATION
 .card {
      padding: 2vh;
 }
+
+.paper_contact {
+     max-width: 500px;
+     margin: auto;
+}
+
+
