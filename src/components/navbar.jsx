@@ -11,6 +11,7 @@ import {
      ListItemText,
      List,
      ListItemButton,
+     ButtonBase,
 } from "@mui/material";
 import { Typography } from "@mui/material";
 import { NavLink } from "react-router-dom";
@@ -25,6 +26,7 @@ import SchoolIcon from "@mui/icons-material/School";
 import WorkIcon from "@mui/icons-material/Work";
 import ContactsIcon from "@mui/icons-material/Contacts";
 import SwitchTheme from "./swithchTheme";
+import { styled } from "@mui/material";
 
 export const links = [
      { name: "Accueil", path: "/", icon: <HomeIcon /> },
@@ -65,6 +67,30 @@ const ListesLinks = () => {
      );
 };
 
+const CustomButton = styled(ButtonBase)(({ theme }) => ({
+     padding: "3vh 2vh",
+     "&:hover, &.Mui-focusVisible": {
+          zIndex: 1,
+          "& .MuiImageBackdrop-root": {
+               opacity: 0.15,
+          },
+          "& .MuiImageMarked-root": {
+               opacity: 0,
+          },
+          "& .MuiTypography-root": {
+               border: "4px solid currentColor",
+          },
+          "& .active": {
+               border: "4px solid currentColor",
+          },
+          borderBottom: `4px solid ${theme.palette.primary.main}`,
+          transition: theme.transitions.create("opacity"),
+     },
+     "& .active": {
+          border: "4px solid currentColor",
+     },
+}));
+
 export default function Navbar() {
      const [open, setOpen] = useState(false);
 
@@ -84,13 +110,14 @@ export default function Navbar() {
                          <div>
                               <Hidden mdDown>
                                    {links.map((item, key) => (
-                                        <NavLink
+                                        <CustomButton
+                                             component={NavLink}
                                              to={item.path}
                                              key={key}
                                              data-replace={item.name}
                                         >
                                              {item.name}
-                                        </NavLink>
+                                        </CustomButton>
                                    ))}
                                    <SwitchTheme />
                               </Hidden>
